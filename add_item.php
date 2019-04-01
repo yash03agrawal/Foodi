@@ -21,7 +21,7 @@
     session_start();
     if(empty($_SESSION['name']))
     {
-        header("Location:login.html");
+        header("Location:login.php");
     }
     else if($_SESSION['type']==1)
     {
@@ -100,7 +100,11 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                               <label for="cuisine_type">Cuisine Type</label>
-                              <input type="text" class="form-control" name="cuisine_type" placeholder="Italian" required>
+                             <select id="cuisine_type" class="form-control" name="cuisine_type" required>
+                                  <option value="Italian" selected="">Italilan</option>
+                                  <option value="Chinese">Chinese</option>
+								  <option value="South Indian">South Indian</option>
+                              </select>
                             </div> <!-- form-group end.// -->
                             <div class="form-group col-md-6">
                               <label>Availability</label>

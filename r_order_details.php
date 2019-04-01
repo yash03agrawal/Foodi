@@ -18,7 +18,11 @@
                 
             body{
                     background-color: #f5f5f5;
-                }    
+                }  
+			
+			#rating{
+				margin-top: 20px;
+			}
         </style>
         
     <?php 
@@ -29,7 +33,7 @@
         
     if(empty($_SESSION['name']))
     {
-        header("Location:login.html");
+        header("Location:login.php");
     }
     else if($_SESSION['type']==1)
     {
@@ -114,7 +118,7 @@
                 
                 
                 $sql2 = "SELECT * FROM customer cu, address a,city ci,country co where cu.u_name=a.u_name and a.u_name=ci.u_name and ci.u_name=co.u_name and co.u_name='{$c_uname}' ";
-                if(!$conn->query($sql1))
+                if(!$conn->query($sql2))
                 {
                     die('Error: ' . $conn->error);
                 }
@@ -226,6 +230,7 @@
                         $field4name = $row1['PRICE'];
                         $field5name = $field3name * $field4name;
                         $total += $field5name;
+						$o_rating = $row1['o_rating'];
                         echo '<tr> 
                                 
                                   <td>'.$field1name.'</td> 
@@ -248,8 +253,38 @@
               </tbody>
             </table>
         </div>
+		
+		<div class="container text-center">
+			<h5>Payment Mode: Cash <i class="fas fa-money-bill-wave"></i></h5>
+		</div>
         
-        
+        <div id="rating" class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-md-3">
+                    <div class="card">
+                    <header class="card-header">
+                        <h4 class="card-title mt-2">Rated</h4>
+                    </header>
+                    <article class="card-body">
+					<form id="rating">
+					<div class="form-group">
+                
+                    <select id="rating" class="form-control" name="rating" disabled>
+						<option value="0" <?php echo ($o_rating == 0)?'selected':''; ?> >Not Rated Yet</option>
+                        <option value="1" <?php echo ($o_rating == 1)?'selected':''; ?> >1</option>
+                        <option value="2"  <?php echo ($o_rating == 2)?'selected':''; ?>>2</option>
+                        <option value="3"  <?php echo ($o_rating == 3)?'selected':''; ?>>3</option>
+                        <option value="4"  <?php echo ($o_rating == 4)?'selected':''; ?>>4</option>
+                        <option value="5"  <?php echo ($o_rating == 5)?'selected':''; ?>>5</option>
+                    </select>
+            </div> 
+        </form>
+		 </article> <!-- card-body end .// -->
+		</div> <!-- card.// -->
+		</div> <!-- col.//-->
+		</div> <!-- row.//-->
+		</div>
+		
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

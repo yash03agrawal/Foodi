@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	 if(empty($_SESSION['name']))
+    {
+?>
 <!doctype html>
 <html>
     <head>
@@ -10,15 +15,7 @@
         <title>
             FOODI
         </title>
- <?php 
-    session_start();
-    if(empty($_SESSION['name']))
-    {
-        header("Location:login.php");
-    }
-    else if($_SESSION['type']==2)
-    {
- ?>
+        
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -32,26 +29,13 @@
 
               <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="restaurant.php">Restaurants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Restaurants</a></li>
                     <li class="nav-item"><a class="nav-link" href="#About">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
                 </ul>
                 <ul class="navbar-nav ml-auto nav-right">
-                  <li class="nav-item dropdown">    
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-user"></i> <?php
-                            echo $_SESSION["name"] ;
-                        ?>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="c_order.php"><i class="fas fa-shopping-cart"></i> My Orders</a>
-<!--
-                      <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profile</a>
-                      <div class="dropdown-divider"></div>
--->
-                      <a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
-                  </li>
+                    <li class="nav-item"><a class="nav-link" href="signup.php"><i class="fas fa-user-plus"></i> Signup</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php"><i class="fas fa-user"></i> Login</a></li>
                 </ul>
               </div>
             </div>
@@ -87,21 +71,21 @@
                   <img src="images/chinese.jpg" class="rounded-circle" width="140" height="140">
                   <h2>Chinese</h2>
                   <p>Chinese cuisine is an important part of Chinese culture, which includes cuisine originating from the diverse regions of China, as well as from Chinese people in other parts of the world. </p>
-                  <p><a class="btn btn-outline-secondary" href="chinese.php" role="button">Try it &raquo;</a></p>
+                  <p><a class="btn btn-outline-secondary" href="login.php" role="button">Try it &raquo;</a></p>
               </div><!-- /.col-lg-4 -->
               
               <div class="col-lg-4">
                 <img src="images/italian.jpg" class="rounded-circle" width="140" height="140">
                 <h2>Italian</h2>
                 <p>Italian cuisine is food typical of Italy. It has developed through centuries of social and economic changes, with roots stretching to antiquity. Italian cuisine is generally characterized by its simplicity.</p>
-                <p><a class="btn btn-outline-secondary" href="italian.php" role="button">Try it &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="login.php" role="button">Try it &raquo;</a></p>
               </div><!-- /.col-lg-4 -->
               
               <div class="col-lg-4">
                 <img src="images/south_indian.jpeg" class="rounded-circle" width="140" height="140">
                 <h2>South Indian</h2>
                 <p>South Indian cuisine includes the cuisines of the five southern states of India—Andhra Pradesh, Karnataka, Kerala, Tamil Nadu and Telangana—and the union territories of Lakshadweep and AN Islands.</p>
-                <p><a class="btn btn-outline-secondary" href="south_indian.php" role="button">Try it &raquo;</a></p>
+                <p><a class="btn btn-outline-secondary" href="login.php" role="button">Try it &raquo;</a></p>
               </div><!-- /.col-lg-4 -->
             </div>
         
@@ -111,7 +95,7 @@
               <div class="col-md-7">
                 <h2 class="featurette-heading">Try Our Best Restaurants. <span class="text-muted">It’ll blow your mind.</span></h2>
                 <p class="lead">Get food at your doorstep from Bangalore's top rated Restaurants.</p>
-                <p><a class="btn btn-outline-secondary" href="restaurant.php" role="button">Try it &raquo;</a></p>  
+                <p><a class="btn btn-outline-secondary" href="#" role="button">Try it &raquo;</a></p>  
               </div>
               <div class="col-md-5">
                 <img src="images/restaurant.jpg" class="rounded float-left" width="450" height="350">
@@ -180,7 +164,14 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body><?php }
+    </body>
+	<?php }
+	else if($_SESSION['type']==0)
+		header("Location:admin.php");
+	else if($_SESSION['type']==1)
+		header("Location:r_user.php");
+	else if($_SESSION['type']==2)
+		header("Location:c_user.php");
 	else
 	{
 		header("Location:access_deny.html");

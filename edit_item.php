@@ -21,7 +21,7 @@
     session_start();
     if(empty($_SESSION['name']))
     {
-        header("Location:login.html");
+        header("Location:login.php");
     }
     else if($_SESSION['type']==1)
     {

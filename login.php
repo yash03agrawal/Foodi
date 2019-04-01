@@ -1,92 +1,59 @@
-<?php
- 
-$servername = "localhost";
-$username = "root";
-$password = "4956";
-$dbname = "foodi";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$input_uname = $_POST['email'];
-$input_pass = $_POST['password'];
-
-$sql="select * from user";
-if (!$conn->query($sql))
-  {
-    die('Error: ' . $conn->error);
-  }
-
-$result = $conn->query($sql);
-$flag=0;
-while($row = $result->fetch_array(MYSQLI_ASSOC))
-{
-    $uname=$row['username'];
-    $pass=$row['password'];
-    $t=$row['type'];
-
-    if((strcmp($input_uname,$uname)==0)&&(strcmp($input_pass,$pass)==0))
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Yash Agrawal and Shivam Kalhans">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/loginstyle.css">
+        <link rel="shortcut icon" href="icon.ico" />
+        <title>
+            FOODI
+        </title>
+        <?php
+	session_start();
+	 if(empty($_SESSION['name']))
     {
-        $flag=1;
-        echo "success";
-        echo $t;
-        if($t==0)
-        {   
-                session_start();
-                $_SESSION['name']=$uname;
-                $_SESSION['type']=0;
-                $_SESSION['u_name']=$uname;
-                header("Location: admin.php");
-        }
-        if($t==1)
-        {
-                $sql2 = "select r_name from restaurant where u_name='$uname'";
-                if (!$conn->query($sql2))
-                {
-                    die('Error: ' . $conn->error);
-                }
-                $r_name1 = $conn->query($sql2);
-                $r_name2 = $r_name1->fetch_array(MYSQLI_ASSOC);
-                session_start();
-                $_SESSION['name']=$r_name2[r_name];
-                $_SESSION['type']=1;
-                $_SESSION['u_name']=$uname;
-                header("Location: r_user.php");
-        }
-
-        if($t==2)
-        {
-                $sql1 = "select f_name from customer where u_name='$uname'";
-                if (!$conn->query($sql1))
-                {
-                    die('Error: ' . $conn->error);
-                }
-                $c_name = $conn->query($sql1);
-                $c_name1 = $c_name->fetch_array(MYSQLI_ASSOC);
-                session_start();
-                $_SESSION['name']= $c_name1['f_name'];
-                $_SESSION['type']=2;
-                $_SESSION['u_name']=$uname;
-                header("Location: c_user.php");
-        }
-    }
-//    else
-//    {
-//        echo 'incorrect username/ password please try again.' ;
-//        header("Location: login.html");
-//    }
-}
-if($flag==0)
-{
-//    $message = "Username and/or Password incorrect.\\nTry again.";
-//    echo "<script type='text/javascript'>alert('$message');</script>";
-//    header("Location: login.html");
-//    exit();
-    $message = "Username and/or Password incorrect.\\nTry again.";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script>setTimeout(\"location.href = 'login.html';\",100);</script>";
-}
-$conn->close();
-?>
+		?>
+    </head>
+    <body class="text-center">
+        
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.php"><i class="fas fa-hamburger"></i> FOODI</a>
+                </div>
+                <ul class="navbar-nav ml-auto nav-right">
+                    <li class="nav-item"><a class="nav-link" href="signup.php"><i class="fas fa-user-plus"></i> Signup</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <form class="form-signin" method="post" action="loginsql.php">
+            <img class="mb-4" src="images/signin.png" alt="signin" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+<!--            <span id='message'></span>-->
+            
+            <button class="btn btn-lg btn-primary btn-block" id="signin" type="submit">Sign in</button>
+            <hr align="center">
+            <p class="mt-2 mb-3 text-muted"> Don't have an Account? <a href="signup.php">Create One</a></p>
+        </form>
+        
+    </body>
+	<?php }
+	else if($_SESSION['type']==0)
+		header("Location:admin.php");
+	else if($_SESSION['type']==1)
+		header("Location:r_user.php");
+	else if($_SESSION['type']==2)
+		header("Location:c_user.php");
+	else
+	{
+		header("Location:access_deny.html");
+	}
+	?>
+</html>

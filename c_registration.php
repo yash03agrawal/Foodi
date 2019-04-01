@@ -9,7 +9,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql1="INSERT INTO user(type,username,password) VALUES(2,'$_POST[email]','$_POST[password]')";
+$pass = password_hash($_POST[password], PASSWORD_DEFAULT);
+
+$sql1="INSERT INTO user(type,username,password) VALUES(2,'$_POST[email]','$pass')";
 
 $sql2="INSERT INTO customer VALUES ('$_POST[email]','$_POST[fname]','$_POST[lname]','$_POST[contact]','$_POST[gender]')";
 

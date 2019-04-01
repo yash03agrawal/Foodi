@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2019 at 10:38 AM
+-- Generation Time: Apr 01, 2019 at 10:09 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -152,7 +152,8 @@ INSERT INTO `3` (`ITEM_ID`, `ITEM_NAME`, `PRICE`, `CUISINE_TYPE`, `Availability`
 ('DP021', 'Nelllore Chicken', 230, 'South Indian', 'Available'),
 ('DP022', 'Chicken Biryani', 210, 'South Indian', 'Available'),
 ('DP023', 'Chicken Dum Biryani', 230, 'South Indian', 'Available'),
-('DP024', 'Mutton Biryani', 280, 'South Indian', 'Available');
+('DP024', 'Mutton Biryani', 280, 'South Indian', 'Available'),
+('DP025', 'Italian Salad', 180, 'Italian', 'Available');
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,8 @@ INSERT INTO `4` (`ITEM_ID`, `ITEM_NAME`, `PRICE`, `CUISINE_TYPE`, `Availability`
 ('EV023', 'Chicken Dum Biryani', 210, 'South Indian', 'Available'),
 ('EV024', 'Mutton Biryani', 240, 'South Indian', 'Available'),
 ('EV025', 'Risotto', 250, 'Italian', 'Available'),
-('EV026', 'Italian Salad', 180, 'Italian', 'Available');
+('EV026', 'Italian Salad', 180, 'Italian', 'Available'),
+('EV027', 'Chinese Bhel', 150, 'Chinese', 'Available');
 
 -- --------------------------------------------------------
 
@@ -304,10 +306,12 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`u_name`, `address`) VALUES
+('akshatmishra@gmail.com', 'LIC Office Janjgir'),
 ('nikhilagrawal027ji@gmail.com', 'Patanjali Chikitsalay and store, Link Road Janjgir'),
 ('shivambudhia@gmail.com', 'Marine drive'),
 ('skalhans04@gmail.com', 'Lucknow Road'),
 ('suniljhajhdia20@gmail.com', 'Patanjali Chikitsalay and store, Link Road Janjgir'),
+('swapnilroy@gmail.com', 'BDA Kengeri'),
 ('yash03agrawal@gmail.com', 'Maheshwari Hostel RR Nagar');
 
 -- --------------------------------------------------------
@@ -326,10 +330,12 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`u_name`, `city`) VALUES
+('akshatmishra@gmail.com', 'Janjgir'),
 ('nikhilagrawal027ji@gmail.com', 'JANJGIR'),
 ('shivambudhia@gmail.com', 'Mumbai'),
 ('skalhans04@gmail.com', 'Gonda'),
 ('suniljhajhdia20@gmail.com', 'JANJGIR'),
+('swapnilroy@gmail.com', 'Bangalore'),
 ('yash03agrawal@gmail.com', 'Bangalore');
 
 -- --------------------------------------------------------
@@ -348,10 +354,12 @@ CREATE TABLE `country` (
 --
 
 INSERT INTO `country` (`u_name`, `country`) VALUES
+('akshatmishra@gmail.com', 'India'),
 ('nikhilagrawal027ji@gmail.com', 'India'),
 ('shivambudhia@gmail.com', 'India'),
 ('skalhans04@gmail.com', 'India'),
 ('suniljhajhdia20@gmail.com', 'India'),
+('swapnilroy@gmail.com', 'India'),
 ('yash03agrawal@gmail.com', 'India');
 
 -- --------------------------------------------------------
@@ -373,10 +381,12 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`u_name`, `f_name`, `l_name`, `contact`, `gender`) VALUES
+('akshatmishra@gmail.com', 'Akshat', 'Mishra', '9758641258', 'Male'),
 ('nikhilagrawal027ji@gmail.com', 'Nikhil', 'Agrawal', '7415727172', 'Male'),
 ('shivambudhia@gmail.com', 'Shivam', 'Budhia', '9876453211', 'Male'),
 ('skalhans04@gmail.com', 'Shivam', 'Kalhans', '7975835849', 'Male'),
 ('suniljhajhdia20@gmail.com', 'Sunil', 'Agrawal', '9826684582', 'Male'),
+('swapnilroy@gmail.com', 'Swapnil', 'Roy', '08989898989', 'Male'),
 ('yash03agrawal@gmail.com', 'Yash', 'Agrawal', '09755639825', 'Male');
 
 -- --------------------------------------------------------
@@ -402,7 +412,12 @@ INSERT INTO `c_order` (`u_name`, `o_id`, `r_id`, `o_status`, `o_date_time`, `o_r
 ('yash03agrawal@gmail.com', 21, '2', 'Order Denied', '2011-01-26 14:30:00', 1),
 ('skalhans04@gmail.com', 22, '2', 'Delivered', '2019-03-25 11:51:12', 4),
 ('yash03agrawal@gmail.com', 23, '5', 'Delivered', '2019-03-25 22:06:43', 5),
-('yash03agrawal@gmail.com', 24, '2', 'Delivered', '2019-03-26 02:34:50', 5);
+('yash03agrawal@gmail.com', 24, '2', 'Delivered', '2019-03-26 02:34:50', 5),
+('yash03agrawal@gmail.com', 25, '4', 'Delivered', '2019-03-27 21:39:25', 4),
+('yash03agrawal@gmail.com', 26, '1', 'Order Denied', '2019-03-28 12:26:48', 2),
+('yash03agrawal@gmail.com', 27, '3', 'Delivered', '2019-03-28 12:27:06', 5),
+('skalhans04@gmail.com', 28, '3', 'Delivered', '2019-03-28 12:29:22', 4),
+('yash03agrawal@gmail.com', 29, '4', 'Delivered', '2019-04-01 11:49:56', 4);
 
 -- --------------------------------------------------------
 
@@ -429,7 +444,13 @@ INSERT INTO `c_order_details` (`o_id`, `item_id`, `quantity`) VALUES
 (23, 'GB005', 2),
 (24, 'BE004', 1),
 (24, 'BE005', 2),
-(24, 'BE006', 4);
+(24, 'BE006', 4),
+(25, 'EV025', 1),
+(25, 'EV026', 1),
+(26, 'AV003', 2),
+(27, 'DP001', 3),
+(28, 'DP010', 4),
+(29, 'EV003', 3);
 
 -- --------------------------------------------------------
 
@@ -452,10 +473,10 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`u_name`, `r_name`, `address`, `contact`, `rating`, `r_id`, `no_of_rating`) VALUES
-('andhravantillu@gmail.com', 'Andhra Vantillu', 'Global Village', '9786543214', 0, '1', 0),
+('andhravantillu@gmail.com', 'Andhra Vantillu', 'Global Village', '9786543214', 2, '1', 1),
 ('beijingeats@gmail.com', 'Beijing Eats', 'RR Nagar', '7415874591', 3.33333, '2', 3),
-('donspizza@gmail.com', 'Don\'s Pizza', 'MG Road', '7415987565', 0, '3', 0),
-('everest@gmail.com', 'Everest', 'RR Nagar', '8825456987', 0, '4', 0),
+('donspizza@gmail.com', 'Don\'s Pizza', 'MG Road', '7415987565', 4.5, '3', 2),
+('everest@gmail.com', 'Everest', 'RR Nagar', '8825456987', 4, '4', 2),
 ('goodbowl@gmail.com', 'Good Bowl', 'MG Road', '9875142563', 5, '5', 1),
 ('kaifoods@gmail.com', 'kai Foods', 'Global Village', '7432369854', 0, '6', 0);
 
@@ -468,7 +489,7 @@ INSERT INTO `restaurant` (`u_name`, `r_name`, `address`, `contact`, `rating`, `r
 CREATE TABLE `user` (
   `type` int(5) NOT NULL,
   `username` varchar(40) NOT NULL DEFAULT '',
-  `password` varchar(20) NOT NULL
+  `password` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -476,17 +497,20 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`type`, `username`, `password`) VALUES
-(1, 'andhravantillu@gmail.com', 'Qwerty123'),
-(1, 'beijingeats@gmail.com', 'Qwerty123'),
-(1, 'donspizza@gmail.com', 'Qwerty123'),
-(1, 'everest@gmail.com', 'Qwerty123'),
-(1, 'goodbowl@gmail.com', 'Qwerty123'),
-(1, 'kaifoods@gmail.com', 'Qwerty123'),
-(2, 'nikhilagrawal027ji@gmail.com', 'Qwerty123'),
-(2, 'shivambudhia@gmail.com', 'Qwerty123'),
-(2, 'skalhans04@gmail.com', 'Qwerty123'),
-(2, 'suniljhajhdia20@gmail.com', 'Qwerty123'),
-(2, 'yash03agrawal@gmail.com', 'Qwerty123');
+(0, 'admin@123', '$2y$10$E9cl2Pfv38CUNOvgEriygekFleqWMhp1Hz5hkZckHmfKQHmlrtEIq'),
+(2, 'akshatmishra@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(1, 'andhravantillu@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(1, 'beijingeats@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(1, 'donspizza@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(1, 'everest@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(1, 'goodbowl@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(1, 'kaifoods@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(2, 'nikhilagrawal027ji@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(2, 'shivambudhia@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(2, 'skalhans04@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(2, 'suniljhajhdia20@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(2, 'swapnilroy@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW'),
+(2, 'yash03agrawal@gmail.com', '$2y$10$0nqtvlVScZ/6CoFT6fkIf.kK.AsLRf5nR4YIFkHSdsduATVWbXeAW');
 
 --
 -- Indexes for dumped tables
@@ -557,7 +581,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `c_order`
 --
 ALTER TABLE `c_order`
-  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `o_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
